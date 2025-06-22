@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .galleryItem {
   box-sizing: border-box;
   width: calc((100% - 48px) / 3);
@@ -16,7 +17,9 @@
   border-left: 1px solid #808080;
   border-right: 1px solid #808080;
   overflow: hidden;
+  list-style: none;
 }
+
 .galleryItem:hover {
   cursor: pointer;
   transform: scale(1.05);
