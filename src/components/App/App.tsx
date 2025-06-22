@@ -7,20 +7,21 @@ import { ClipLoader } from "react-spinners";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageModal from "../ImageModal/ImageModal";
+import type { Photo } from "../../types/photo";
 
 function App() {
-  const [photos, setPhotos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  const [input, setInput] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [input, setInput] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [modalSrc, setModalSrc] = useState("");
-  const [modalAlt, setModalAlt] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [modalSrc, setModalSrc] = useState<string>("");
+  const [modalAlt, setModalAlt] = useState<string>("");
 
-  const handleSearch = (newInput) => {
+  const handleSearch = (newInput: string): void => {
     setPhotos([]);
     setInput(newInput);
     setCurrentPage(1);
@@ -30,10 +31,10 @@ function App() {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleOpenModal = (urls) => {
+  const handleOpenModal = (photo: Photo) => {
     setIsOpenModal(true);
-    setModalSrc(urls.regular);
-    setModalAlt(urls.description);
+    setModalSrc(photo.urls.regular);
+    setModalAlt(photo.description ?? "image");
   };
   const handleCloseModal = () => {
     setIsOpenModal(false);

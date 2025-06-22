@@ -1,9 +1,19 @@
-import css from './ImageCard.module.css';
+import css from "./ImageCard.module.css";
+import type { Photo } from "../../types/photo";
 
-const ImageCard = ({ item: { urls, description }, handleClick }) => {
+interface ImageCardProps {
+  item: Photo;
+  handleClick: (photo: Photo) => void;
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({ item, handleClick }) => {
   return (
-    <div className={css.imageCard} onClick={() => handleClick(urls)}>
-      <img className={css.image} src={urls.small} alt={description} />
+    <div className={css.imageCard} onClick={() => handleClick(item)}>
+      <img
+        className={css.image}
+        src={item.urls.small}
+        alt={item.description ?? "Image description"}
+      />
     </div>
   );
 };

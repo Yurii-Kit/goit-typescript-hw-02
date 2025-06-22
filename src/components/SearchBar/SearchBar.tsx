@@ -1,16 +1,22 @@
 import css from "./SearchBar.module.css";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Loader from "../Loader/Loader";
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (event) => {
+// Описуємо тип пропсів
+type SearchProps = {
+  onSearch: (query: string) => void;
+};
+
+const SearchBar: React.FC<SearchProps> = ({ onSearch }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
-    const query = form.elements.query.value.trim();
+    // const query = form.elements.query.value.trim();
 
     // Використання FormData для отримання даних із форми
-    // const formData = new FormData(form);
-    // const query = formData.get('query').trim(); // Отримуємо значення поля "query"
+    const formData = new FormData(form);
+    // Отримуємо значення поля "query"
+    const query = formData.get("query") as string;
 
     if (query === "") {
       toast.error("Please enter a search query!");

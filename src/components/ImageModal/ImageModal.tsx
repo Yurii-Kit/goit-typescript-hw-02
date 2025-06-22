@@ -1,26 +1,40 @@
-import Modal from 'react-modal';
-import css from './ImageModal.module.css';
-const customStyles = {
+import Modal from "react-modal";
+import type { Styles } from "react-modal";
+
+import css from "./ImageModal.module.css";
+const customStyles: Styles = {
   content: {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '80%',
-    height: '80%',
-    maxWidth: '1200px',
-    maxHeight: '90vh',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '0',
-    borderRadius: '10px',
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "80%",
+    height: "80%",
+    maxWidth: "1200px",
+    maxHeight: "90vh",
+    overflow: "hidden",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0",
+    borderRadius: "10px",
   },
 };
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
-const ImageModal = ({ modalIsOpen, closeModal, urls, alt }) => {
+interface ImageModalProps {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+  urls: string;
+  alt: string;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({
+  modalIsOpen,
+  closeModal,
+  urls,
+  alt,
+}) => {
   return (
     <Modal
       style={customStyles}
