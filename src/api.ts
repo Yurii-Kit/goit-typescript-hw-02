@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { Photo } from "./types/photo";
 
 axios.defaults.baseURL = `https://api.unsplash.com`;
 
@@ -6,13 +7,6 @@ axios.defaults.baseURL = `https://api.unsplash.com`;
 async function fetchData<T>(url: string, config = {}): Promise<T> {
   const response = await axios.get<T>(url, config);
   return response.data;
-}
-
-// Тип для фото
-interface Photo {
-  id: string;
-  urls: { small: string; regular: string; full: string };
-  description: string | null;
 }
 
 // Тип для відповіді API

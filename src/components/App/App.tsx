@@ -27,8 +27,8 @@ function App() {
     setCurrentPage(1);
   };
 
-  const incrementPage = () => {
-    setCurrentPage(currentPage + 1);
+  const incrementPage: () => void = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
   };
 
   const handleOpenModal = (photo: Photo) => {
